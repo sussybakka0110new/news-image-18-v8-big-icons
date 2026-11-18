@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>18 November 2026 — The Day in World News</title>
+<style>
+  * { box-sizing: border-box; }
+  html, body {
+    margin:0; padding:0; width:1024px; height:1024px; overflow:hidden;
+    background:#F5F1E6;
+    font-family:'DejaVu Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .page { position:relative; width:1024px; height:1024px; background:#F5F1E6; color:#16233B; overflow:hidden; }
+  .abs { position:absolute; }
+
+  /* FIX 3: every text block is contained to its own column. */
+  .date, .tag, .hdrstats, .icap, .reg, .det, .ntitle, .nlbl,
+  .maptitle, .morehead, .mline, .f1, .f2 {
+    max-width:100%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+  }
+
+  /* ---------- 1. HEADER ---------- */
+  .hdr {
+    left:0; top:0; width:1024px; height:128px;
+    background:#15264A; color:#FFFFFF; padding:13px 26px 10px 26px; overflow:hidden;
+  }
+  .hdr:after { content:""; position:absolute; left:0; bottom:0; width:1024px; height:5px; background:#C0392B; }
+  .kicker { font-size:12px; font-weight:bold; letter-spacing:4.6px; color:#F1C75B; }
+  .date { font-size:45px; line-height:49px; font-weight:bold; letter-spacing:-0.6px; margin-top:3px; }
+  .tag { font-size:13px; color:#CBD6E8; margin-top:3px; letter-spacing:0.15px; }
+  .hdrstats {
+    position:absolute; right:26px; top:16px; text-align:right;
+    font-size:12.5px; line-height:18px; font-weight:bold; letter-spacing:0.9px; color:#F1C75B;
+  }
+  .hdrstats span { font-size:14px; color:#FFFFFF; }
+
+  /* ---------- 2. THREE ILLUSTRATIONS ---------- */
+  .illus { left:26px; top:135px; width:972px; height:154px; display:flex; gap:12px; }
+  .icell { width:316px; height:154px; }
+  .iframe { width:316px; height:122px; overflow:hidden; border:1px solid #B9C4D2; background:#BFD9E8; }
+  .iframe svg { display:block; width:316px; height:122px; }
+  .icap {
+    width:316px; height:28px; line-height:27px; text-align:center;
+    background:#E7ECF4; border-top:3px solid #15264A;
+    font-size:11.5px; font-weight:bold; letter-spacing:1.1px; color:#15264A;
+  }
+
+  /* ---------- 3. NINE TOP STORIES (V7: icon centred ABOVE its own text) ---------- */
+  .stories { left:26px; top:294px; width:972px; height:321px; display:grid;
+             grid-template-columns:repeat(3,316px); grid-template-rows:repeat(3,103px); gap:6px 8px; }
+  .story { position:relative; width:316px; height:103px; background:#FFFFFF;
+           border:1px solid #D2CDBE; border-left:4px solid #15264A;
+           padding:2px 8px; overflow:hidden; }
+  /* V8: each illustration is a full-width strip that fills its column's inner width. */
+  .mini { width:264px; height:47px; margin:0 auto 1px;
+          border:1px solid #C7CFC0; background:#FFFFFF; overflow:hidden; }
+  .mini svg { display:block; width:100%; height:100%; }
+  .hrow { display:flex; align-items:center; gap:6px; height:12px; }
+  .num { flex:0 0 14px; width:14px; height:14px; border-radius:50%;
+         color:#FFFFFF; font-size:9.5px; font-weight:bold; text-align:center; line-height:14px; }
+  .reg { font-size:8.8px; font-weight:bold; letter-spacing:0.6px; line-height:11px; }
+  .hed { font-size:11.5px; font-weight:bold; line-height:11.5px; margin-top:1px; color:#15264A;
+         display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical;
+         overflow:hidden; word-break:break-word; max-width:100%; }
+  .det { font-size:9.2px; line-height:10px; color:#4A5568; margin-top:1px; }
+  .rc { color:#C0392B; } .ro { color:#C4680A; } .rb { color:#205CAA; } .rg { color:#137A55; }
+
+  /* ---------- 4. BY THE NUMBERS ---------- */
+  .numbers { left:0; top:618px; width:1024px; height:62px; background:#D9E8F6;
+             border-top:2px solid #9CB8D4; border-bottom:2px solid #9CB8D4; display:flex; align-items:center; }
+  .ntitle { width:196px; padding-left:26px; font-size:14px; font-weight:bold; line-height:17px;
+            letter-spacing:1.2px; color:#15264A; }
+  .ntitle small { display:block; font-size:9.5px; font-weight:normal; letter-spacing:0.4px; color:#4A6076; margin-top:2px; }
+  .ncell { width:194px; text-align:center; border-left:1px solid #AFC8DF; }
+  .nbig { font-size:25px; font-weight:bold; line-height:28px; color:#C0392B; }
+  .nlbl { font-size:10px; line-height:12px; color:#3E5166; letter-spacing:0.3px; margin-top:2px; }
+
+  /* ---------- 5. LOWER: ASCII MAP (left) + 26 MORE (right) ---------- */
+  .low { left:26px; top:690px; width:972px; height:286px; }
+  .mappanel { position:absolute; left:0; top:0; width:554px; height:286px;
+              border:1px solid #C7CFC0; background:#FBF9F1; }
+  .maptitle { height:18px; line-height:17px; padding-left:8px; font-size:10px; font-weight:bold;
+              letter-spacing:1.4px; background:#E7ECF4; color:#15264A; border-bottom:1px solid #C7CFC0; }
+  .asciimap { position:relative; margin:4px 0 0 7px; }
+  .asciimap pre {
+    margin:0; font-family:'DejaVu Sans Mono', monospace; font-size:12px; line-height:12.6px;
+    color:#1D5E86; letter-spacing:0; font-weight:bold;
+  }
+  .mapdots { position:absolute; left:0; top:0; }
+  .mdot { position:absolute; width:15px; height:15px; margin-left:-7px; margin-top:-7px;
+          border-radius:50%; background:#C0392B; color:#FFFFFF; border:1px solid #FFFFFF;
+          font-family:'DejaVu Sans', sans-serif; font-size:8.5px; font-weight:bold;
+          text-align:center; line-height:13px; }
+  .morepanel { position:absolute; left:566px; top:0; width:406px; height:286px; }
+  .morehead { height:26px; line-height:25px; border-bottom:2px solid #15264A;
+              font-size:10.6px; letter-spacing:0.2px; font-weight:bold; color:#15264A; }
+  .morecols { display:flex; gap:14px; margin-top:7px; }
+  .mcol { width:196px; }
+  .mline { height:19px; line-height:18px; font-size:10.2px; color:#28344A;
+           border-bottom:1px dotted #C7CFC0; }
+  .mline b { color:#C0392B; margin-right:4px; }
+
+  /* ---------- 6. FOOTER ---------- */
+  .foot { left:0; top:982px; width:1024px; height:42px; border-top:2px solid #15264A;
+          background:#EDE8D8; padding:5px 26px 0 26px; text-align:center; overflow:hidden; }
+  .foot .f1 { font-size:10.8px; font-weight:bold; color:#15264A; letter-spacing:0.4px; }
+  .foot .f2 { font-size:9.4px; color:#4A5568; margin-top:3px; line-height:12px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="abs hdr">
+    <div class="kicker">THE DAY IN WORLD NEWS</div>
+    <div class="date">Wednesday 18 November 2026</div>
+    <div class="tag">Every story on this page happened, or was first reported, on this day.</div>
+    <div class="hdrstats">35 STORIES <span>&bull;</span> 6 CONTINENTS <span>&bull;</span> ONE PAGE</div>
+  </div>
+
+  <!-- THREE ILLUSTRATIONS -->
+  <div class="abs illus">
+    <div class="icell">
+      <div class="iframe">
+        <svg viewBox="0 0 316 122" xmlns="http://www.w3.org/2000/svg" aria-label="Airbase on Qeshm Island">
+          <rect width="316" height="122" fill="#BFD9E8"/>
+          <circle cx="266" cy="26" r="15" fill="#F1C75B"/>
+          <path d="M0 78 Q70 70 140 78 L140 122 L0 122 Z" fill="#C9B98C"/>
+          <path d="M140 84 Q230 74 316 86 L316 122 L140 122 Z" fill="#4E86A8"/>
+          <g stroke="#EAE3D2" stroke-width="1.2" opacity=".7">
+            <path d="M150 96 h16 M176 101 h16 M202 97 h16 M232 102 h16 M264 98 h16 M290 103 h16"/>
+          </g>
+          <path d="M36 78 L118 78 L150 108 L20 108 Z" fill="#6E7782"/>
+          <g stroke="#F1EAD8" stroke-width="2" stroke-dasharray="9 8">
+            <path d="M70 93 L78 93 M96 93 L104 93"/>
+          </g>
+          <rect x="150" y="46" width="20" height="34" fill="#8894A2"/>
+          <rect x="147" y="38" width="26" height="10" fill="#2E4A6B"/>
+          <path d="M147 38 h26 l-4 -6 h-18 Z" fill="#C0392B"/>
+          <rect x="154" y="52" width="4" height="5" fill="#F1C75B"/>
+          <path d="M198 70 a20 12 0 0 1 40 0 Z" fill="#9AA6B2"/>
+          <rect x="196" y="70" width="44" height="8" fill="#6E7782"/>
+          <path d="M60 40 l30 6 -30 6 8 -6 Z" fill="#15264A"/>
+          <path d="M90 46 l-8 -7 4 7 Z" fill="#15264A"/>
+          <path d="M62 46 l-6 6 10 -4 Z" fill="#15264A"/>
+          <path d="M104 30 l22 4 -22 4 6 -4 Z" fill="#15264A"/>
+          <path d="M126 34 l-6 -5 3 5 Z" fill="#15264A"/>
+          <path d="M106 34 l-5 5 8 -3 Z" fill="#15264A"/>
+          <line x1="184" y1="38" x2="184" y2="24" stroke="#15264A" stroke-width="1.5"/>
+          <circle cx="184" cy="23" r="5" fill="none" stroke="#15264A" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <div class="icap">SHEIKH ISA BASE &mdash; QESHM ISLAND</div>
+    </div>
+    <div class="icell">
+      <div class="iframe">
+        <svg viewBox="0 0 316 122" xmlns="http://www.w3.org/2000/svg" aria-label="Kerch Strait bridge with a fallen span">
+          <rect width="316" height="122" fill="#BFD9E8"/>
+          <circle cx="48" cy="24" r="13" fill="#F1C75B"/>
+          <path d="M0 60 L316 60 L316 122 L0 122 Z" fill="#4E86A8"/>
+          <g stroke="#9CC0D6" stroke-width="1.2" opacity=".8">
+            <path d="M8 76 h18 M36 90 h18 M70 74 h18 M104 94 h18 M140 80 h18 M178 96 h18 M216 78 h18 M252 92 h18 M286 80 h18"/>
+          </g>
+          <rect x="0" y="54" width="118" height="8" fill="#D5D9DC"/>
+          <rect x="196" y="54" width="120" height="8" fill="#D5D9DC"/>
+          <g fill="#8D969F">
+            <rect x="16" y="62" width="8" height="26"/><rect x="62" y="62" width="8" height="26"/>
+            <rect x="106" y="62" width="8" height="26"/><rect x="212" y="62" width="8" height="26"/>
+            <rect x="256" y="62" width="8" height="26"/><rect x="300" y="62" width="8" height="26"/>
+          </g>
+          <g stroke="#8D969F" stroke-width="1.6">
+            <path d="M20 54 L40 40 L60 54"/><path d="M64 54 L84 40 L104 54"/>
+            <path d="M216 54 L236 40 L256 54"/><path d="M260 54 L280 40 L300 54"/>
+          </g>
+          <path d="M118 54 L196 54 L190 60 L124 60 Z" fill="#C0392B"/>
+          <path d="M136 58 L158 96 L172 96 L158 58 Z" fill="#8D969F"/>
+          <circle cx="164" cy="102" r="9" fill="#15264A" opacity=".55"/>
+          <path d="M228 100 l34 0 -6 10 -22 0 Z" fill="#15264A"/>
+          <rect x="242" y="90" width="8" height="11" fill="#15264A"/>
+        </svg>
+      </div>
+      <div class="icap">KERCH STRAIT &mdash; 19 KM CROSSING</div>
+    </div>
+    <div class="icell">
+      <div class="iframe">
+        <svg viewBox="0 0 316 122" xmlns="http://www.w3.org/2000/svg" aria-label="Manila city skyline">
+          <rect width="316" height="122" fill="#F6D9B0"/>
+          <circle cx="258" cy="30" r="16" fill="#F1C75B"/>
+          <g fill="#2E4A6B">
+            <rect x="6" y="66" width="26" height="40"/><rect x="36" y="52" width="22" height="54"/>
+            <rect x="62" y="72" width="18" height="34"/><rect x="84" y="44" width="26" height="62"/>
+            <rect x="114" y="60" width="20" height="46"/><rect x="138" y="36" width="24" height="70"/>
+            <rect x="166" y="56" width="22" height="50"/><rect x="192" y="48" width="28" height="58"/>
+            <rect x="224" y="66" width="18" height="40"/><rect x="246" y="54" width="24" height="52"/>
+            <rect x="274" y="62" width="20" height="44"/><rect x="298" y="70" width="18" height="36"/>
+          </g>
+          <path d="M96 44 q16 -20 32 0 Z" fill="#C0392B"/>
+          <rect x="108" y="44" width="8" height="12" fill="#C0392B"/>
+          <path d="M144 36 l12 -18 12 18 Z" fill="#1B7F5A"/>
+          <rect x="152" y="12" width="8" height="8" fill="#1B7F5A"/>
+          <path d="M196 48 q14 -14 28 0 Z" fill="#F1C75B"/>
+          <g fill="#F1C75B" opacity=".9">
+            <rect x="42" y="60" width="3" height="4"/><rect x="48" y="60" width="3" height="4"/>
+            <rect x="90" y="54" width="3" height="4"/><rect x="96" y="54" width="3" height="4"/>
+            <rect x="144" y="46" width="3" height="4"/><rect x="151" y="46" width="3" height="4"/>
+            <rect x="198" y="58" width="3" height="4"/><rect x="205" y="58" width="3" height="4"/>
+            <rect x="252" y="64" width="3" height="4"/><rect x="259" y="64" width="3" height="4"/>
+          </g>
+          <rect x="0" y="106" width="316" height="16" fill="#4E86A8"/>
+          <g stroke="#EAE3D2" stroke-width="1.2" opacity=".7">
+            <path d="M12 113 h18 M42 117 h18 M78 113 h18 M128 116 h18 M190 113 h18 M250 116 h18 M286 113 h18"/>
+          </g>
+          <path d="M18 100 l22 0 -3 7 -16 0 Z" fill="#C0392B"/>
+          <path d="M52 99 l24 0 -3 8 -18 0 Z" fill="#F1C75B"/>
+        </svg>
+      </div>
+      <div class="icap">MANILA &mdash; FIRST QUAD IN TWO YEARS</div>
+    </div>
+  </div>
+
+  <!-- NINE TOP STORIES -->
+  <div class="abs stories">
+
+    <div class="story" style="border-left-color:#C0392B">
+      <div class="mini"><svg viewBox="0 0 58 55" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-label="Gulf conflict scene">
+        <rect width="58" height="55" fill="#F6E7C6"/><circle cx="47" cy="10" r="6" fill="#F1C75B"/>
+        <path d="M0 38 Q29 33 58 38 V55 H0Z" fill="#C9B98C"/>
+        <path d="M6 17 l16 4 -16 4 5 -4 Z" fill="#15264A"/><path d="M14 25 l-4 5 7 -3 Z" fill="#15264A"/>
+        <path d="M30 16 l14 3 -14 3 4 -3 Z" fill="#15264A"/>
+        <rect x="36" y="34" width="18" height="7" fill="#6E7782"/><rect x="43" y="27" width="2" height="7" fill="#15264A"/>
+        <path d="M45 27 h9 l-3 4 -6 -1 Z" fill="#C0392B"/>
+        <circle cx="11" cy="45" r="3.2" fill="#205CAA"/><circle cx="50" cy="47" r="3.2" fill="#C0392B"/>
+      </svg></div>
+      <div class="hrow">
+      <div class="num" style="background:#C0392B">1</div>
+      <div class="reg rc">MIDDLE EAST / CONFLICT</div>
+      </div>
+      <div class="hed">US and Iran trade fire over Bahrain and Qeshm</div>
+      <div class="det">US jets hit Iranian missile sites on Qeshm island.</div>
+    </div>
+
+    <div class="story" style="border-left-color:#C0392B">
+      <div class="mini"><svg viewBox="0 0 58 55" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-label="Bridge with broken span">
+        <rect width="58" height="55" fill="#BFD9E8"/><circle cx="9" cy="11" r="5.5" fill="#F1C75B"/>
+        <rect y="36" width="58" height="19" fill="#4E86A8"/>
+        <g stroke="#9CC0D6" stroke-width="1"><path d="M4 43 h10 M20 49 h10 M38 42 h10 M48 49 h8"/></g>
+        <rect x="0" y="30" width="23" height="6" fill="#D5D9DC"/><rect x="35" y="30" width="23" height="6" fill="#D5D9DC"/>
+        <rect x="4" y="36" width="4" height="11" fill="#8D969F"/><rect x="16" y="36" width="4" height="11" fill="#8D969F"/>
+        <rect x="39" y="36" width="4" height="11" fill="#8D969F"/><rect x="51" y="36" width="4" height="11" fill="#8D969F"/>
+        <path d="M23 36 L32 52 L36 52 L29 36 Z" fill="#8D969F"/><path d="M30 33 L35 33 L34 37 L30 37 Z" fill="#C0392B"/>
+      </svg></div>
+      <div class="hrow">
+      <div class="num" style="background:#C0392B">2</div>
+      <div class="reg rc">EUROPE / WAR IN UKRAINE</div>
+      </div>
+      <div class="hed">A span of the Crimea bridge falls into the sea</div>
+      <div class="det">A second Kyiv strike destroys a section of the Kerch bridge.</div>
+    </div>
+
+    <div class="story" style="border-left-color:#C0392B">
+      <div class="mini"><svg viewBox="0 0 58 55" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-label="Handshake and aircraft">
+        <rect width="58" height="55" fill="#F6D9B0"/><circle cx="48" cy="10" r="5" fill="#F1C75B"/>
+        <path d="M18 9 h20 l-10 5 Z" fill="#15264A"/><path d="M28 14 l-3 4 6 -2 Z" fill="#15264A"/>
+        <circle cx="15" cy="23" r="5" fill="#15264A"/><rect x="9" y="28" width="12" height="18" rx="2" fill="#205CAA"/>
+        <circle cx="43" cy="23" r="5" fill="#15264A"/><rect x="37" y="28" width="12" height="18" rx="2" fill="#C0392B"/>
+        <rect x="25" y="30" width="9" height="6" fill="#E9B98C"/><path d="M25 31 h4 M30 34 h4" stroke="#B98456" stroke-width="1"/>
+      </svg></div>
+      <div class="hrow">
+      <div class="num" style="background:#C0392B">3</div>
+      <div class="reg rc">ASIA / DIPLOMACY</div>
+      </div>
+      <div class="hed">Trump meets Marcos, then flies to Shenzhen</div>
+      <div class="det">Manila meeting ahead of the Quad summit.</div>
+    </div>
+
+    <div class="story" style="border-left-color:#137A55">
+      <div class="mini"><svg viewBox="0 0 58 55" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-label="Rising revenue chart and chip">
+        <rect width="58" height="55" fill="#EAF3EA"/>
+        <rect x="6" y="36" width="8" height="14" fill="#137A55"/><rect x="18" y="28" width="8" height="22" fill="#137A55"/>
+        <rect x="30" y="18" width="8" height="32" fill="#137A55"/>
+        <path d="M7 32 L19 24 L31 13" fill="none" stroke="#C0392B" stroke-width="2.5"/><path d="M31 13 l-5 1 2 -5 Z" fill="#C0392B"/>
+        <rect x="42" y="14" width="12" height="12" fill="#15264A"/>
+        <g stroke="#15264A" stroke-width="1.5">
+          <path d="M44 10 v4 M48 10 v4 M52 10 v4 M44 26 v-4 M48 26 v-4 M52 26 v-4 M38 16 h4 M38 20 h4 M54 16 h4 M54 20 h4"/>
+        </g><rect x="45" y="17" width="6" height="6" fill="#137A55"/>
+      </svg></div>
+      <div class="hrow">
+      <div class="num" style="background:#137A55">4</div>
+      <div class="reg rg">UNITED STATES / BUSINESS</div>
+      </div>
+      <div class="hed">Nvidia's revenue doubles to $115.8bn</div>
+      <div class="det">Quarterly sales up 103%.</div>
+    </div>
+
+    <div class="story" style="border-left-color:#C4680A">
+      <div class="mini"><svg viewBox="0 0 58 55" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-label="Parliament chamber and ballot">
+        <rect width="58" height="55" fill="#EAF0F5"/><path d="M5 45 a24 20 0 0 1 48 0 Z" fill="#D9E2EC"/>
+        <g fill="#15264A">
+          <circle cx="12" cy="40" r="2"/><circle cx="19" cy="34" r="2"/><circle cx="29" cy="32" r="2"/>
+          <circle cx="39" cy="34" r="2"/><circle cx="46" cy="40" r="2"/>
+        </g>
+        <rect x="21" y="32" width="16" height="16" fill="#FFFFFF" stroke="#15264A" stroke-width="1.5"/>
+        <rect x="19" y="29" width="20" height="4" fill="#15264A"/>
+        <path d="M24 40 l4 4 7 -8" fill="none" stroke="#137A55" stroke-width="2.5"/>
+      </svg></div>
+      <div class="hrow">
+      <div class="num" style="background:#C4680A">5</div>
+      <div class="reg ro">ISRAEL / POLITICS</div>
+      </div>
+      <div class="hed">Knesset elects Kahana as speaker, 66&ndash;52</div>
+      <div class="det">The vote gives the speaker's chair to Kahana.</div>
+    </div>
+
+    <div class="story" style="border-left-color:#205CAA">
+      <div class="mini"><svg viewBox="0 0 58 55" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-label="EU flag and loan document">
+        <rect width="58" height="55" fill="#E8EEF7"/><rect x="5" y="8" width="24" height="16" fill="#205CAA"/>
+        <g fill="#F1C75B">
+          <circle cx="11" cy="12" r="1.3"/><circle cx="17" cy="12" r="1.3"/><circle cx="23" cy="12" r="1.3"/>
+          <circle cx="11" cy="20" r="1.3"/><circle cx="17" cy="20" r="1.3"/><circle cx="23" cy="20" r="1.3"/>
+        </g>
+        <rect x="33" y="12" width="18" height="26" fill="#FFFFFF" stroke="#15264A" stroke-width="1.5"/>
+        <text x="42" y="31" font-family="DejaVu Sans" font-size="15" font-weight="bold" fill="#15264A" text-anchor="middle">&#8364;</text>
+        <path d="M6 32 h22 M6 36 h14" stroke="#15264A" stroke-width="1" opacity=".5"/>
+      </svg></div>
+      <div class="hrow">
+      <div class="num" style="background:#205CAA">6</div>
+      <div class="reg rb">EUROPE / UKRAINE</div>
+      </div>
+      <div class="hed">EU proposes a &euro;45bn loan for Ukraine</div>
+      <div class="det">The funds would cover the budget gap.</div>
+    </div>
+
+    <div class="story" style="border-left-color:#137A55">
+      <div class="mini"><svg viewBox="0 0 58 55" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-label="Cyclone over a coast">
+        <rect width="58" height="55" fill="#BFD9E8"/>
+        <path d="M0 38 Q18 34 32 39 T58 36 V55 H0Z" fill="#C9B98C"/>
+        <path d="M30 17 C 44 6, 52 20, 38 27 C 28 32, 20 26, 25 18" fill="none" stroke="#15264A" stroke-width="3" stroke-linecap="round"/>
+        <path d="M27 16 C 14 8, 8 22, 22 28" fill="none" stroke="#15264A" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="29" cy="21" r="3.5" fill="#C0392B"/>
+        <g stroke="#9CC0D6" stroke-width="1"><path d="M4 46 h10 M40 48 h10"/></g>
+      </svg></div>
+      <div class="hrow">
+      <div class="num" style="background:#137A55">7</div>
+      <div class="reg rg">SOUTH ASIA / WEATHER</div>
+      </div>
+      <div class="hed">Cyclone Akvan bears down on Andhra Pradesh</div>
+      <div class="det">200,000 evacuated; 145 km/h gusts in Odisha.</div>
+    </div>
+
+    <div class="story" style="border-left-color:#C0392B">
+      <div class="mini"><svg viewBox="0 0 58 55" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-label="Falling stock chart">
+        <rect width="58" height="55" fill="#FCEDEA"/>
+        <g stroke="#E6C9C4" stroke-width="1"><path d="M6 14 h46 M6 26 h46 M6 38 h46 M6 48 h46"/></g>
+        <path d="M7 12 L19 22 L29 18 L41 35 L53 45" fill="none" stroke="#C0392B" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M53 45 l-7 -1 3 -6 Z" fill="#C0392B"/>
+        <g fill="#C0392B"><rect x="8" y="44" width="5" height="8"/><rect x="20" y="44" width="5" height="8"/></g>
+      </svg></div>
+      <div class="hrow">
+      <div class="num" style="background:#C0392B">8</div>
+      <div class="reg rc">UNITED STATES / MARKETS</div>
+      </div>
+      <div class="hed">Wall Street slides as the Dow drops 849 points</div>
+      <div class="det">Stocks fall across the board in New York.</div>
+    </div>
+
+    <div class="story" style="border-left-color:#C0392B">
+      <div class="mini"><svg viewBox="0 0 58 55" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-label="Summit podium and skyline">
+        <rect width="58" height="55" fill="#F6D9B0"/><circle cx="47" cy="10" r="5" fill="#F1C75B"/>
+        <g fill="#2E4A6B">
+          <rect x="2" y="30" width="8" height="14"/><rect x="11" y="25" width="7" height="19"/>
+          <rect x="40" y="27" width="7" height="17"/><rect x="48" y="32" width="8" height="12"/>
+        </g>
+        <rect x="18" y="36" width="22" height="15" fill="#15264A"/><rect x="15" y="32" width="28" height="4" fill="#C0392B"/>
+        <line x1="29" y1="32" x2="29" y2="24" stroke="#15264A" stroke-width="1.5"/>
+        <circle cx="29" cy="23" r="2" fill="#15264A"/><circle cx="29" cy="16" r="4" fill="#E9B98C"/>
+        <path d="M24 32 q5 -8 10 0 Z" fill="#205CAA"/>
+      </svg></div>
+      <div class="hrow">
+      <div class="num" style="background:#C0392B">9</div>
+      <div class="reg rc">CHINA / SUMMIT</div>
+      </div>
+      <div class="hed">APEC opens in Shenzhen with Xi keynote</div>
+      <div class="det">Leaders gather for the annual summit.</div>
+    </div>
+
+  </div>
+
+  <!-- BY THE NUMBERS -->
+  <div class="abs numbers">
+    <div class="ntitle">BY THE NUMBERS<small>18 NOV 2026</small></div>
+    <div class="ncell"><div class="nbig">66&ndash;52</div><div class="nlbl">Kahana elected speaker</div></div>
+    <div class="ncell"><div class="nbig">$115.8bn</div><div class="nlbl">Nvidia quarterly revenue</div></div>
+    <div class="ncell"><div class="nbig">145 km/h</div><div class="nlbl">Odisha wind gusts</div></div>
+    <div class="ncell"><div class="nbig">200,000</div><div class="nlbl">People evacuated</div></div>
+  </div>
+
+  <!-- LOWER: BLOCK ASCII MAP + 26 MORE STORIES -->
+  <div class="abs low">
+    <div class="mappanel">
+      <div class="maptitle">THE WORLD MAP &mdash; 20 NEWS LOCATIONS</div>
+      <!-- V5-STYLE ASCII WORLD MAP: bold blue monospaced block characters -->
+      <div class="asciimap">
+<pre>
++------------------------------------------------------------------------+
+|                                                                        |
+| +++++                             ++++          +++++++++++++          |
+| +####+++++++++++++                +##+  +++++++###############+++      |
+|  +++##############++           +++####+  +######+################+     |
+|     +###############           +#######+  +#######################+  + |
+|      +++#########++             ++++++     ++###################++  +  |
+|         ++#####++                            +++#############+++       |
+|           +###+                 +++++++++++     +#####++++++           |
+|            +++                  +##########+     +###+                 |
+|              ++++               +###########+    +###    ++++++        |
+|               +++++++++         +###########+     +++     +####        |
+|                 +######+         +#########+               +++++       |
+|                 +#######+        +########+                            |
+|                 +#######+         +######+   +                         |
+|                 +######+           ++##++                   +++++++    |
+|                  +####+              ++                    +#######    |
+|                  +###+                                      ++####++   |
+|                   +#+                                         +++      |
++------------------------------------------------------------------------+
+</pre>
+<div class="mapdots">
+<span class="mdot" style="left:90.2px;top:57.7px" title="WASHINGTON">1</span>
+<span class="mdot" style="left:386.2px;top:108.1px" title="QESHM">2</span>
+<span class="mdot" style="left:364.6px;top:108.1px" title="BAHRAIN">3</span>
+<span class="mdot" style="left:306.8px;top:70.3px" title="KYIV/KERCH">4</span>
+<span class="mdot" style="left:465.7px;top:133.3px" title="MANILA">5</span>
+<span class="mdot" style="left:451.2px;top:108.1px" title="SHENZHEN">6</span>
+<span class="mdot" style="left:342.9px;top:108.1px" title="JERUSALEM">7</span>
+<span class="mdot" style="left:278.0px;top:57.7px" title="BRUSSELS">8</span>
+<span class="mdot" style="left:407.9px;top:145.9px" title="ANDHRA PRADESH">9</span>
+<span class="mdot" style="left:104.7px;top:45.1px" title="NEW YORK">10</span>
+<span class="mdot" style="left:509.0px;top:70.3px" title="TOKYO">11</span>
+<span class="mdot" style="left:256.3px;top:45.1px" title="LONDON">12</span>
+<span class="mdot" style="left:278.0px;top:70.3px" title="GENEVA">13</span>
+<span class="mdot" style="left:292.4px;top:45.1px" title="COPENHAGEN">14</span>
+<span class="mdot" style="left:393.5px;top:133.3px" title="MUMBAI">15</span>
+<span class="mdot" style="left:256.3px;top:133.3px" title="SENEGAL">16</span>
+<span class="mdot" style="left:299.6px;top:133.3px" title="SUDAN">17</span>
+<span class="mdot" style="left:162.4px;top:196.3px" title="BRASILIA">18</span>
+<span class="mdot" style="left:256.3px;top:158.5px" title="GUINEA">19</span>
+<span class="mdot" style="left:75.8px;top:45.1px" title="CANADA">20</span>
+</div>
+</div>
+    </div>
+    <div class="morepanel">
+      <div class="morehead">ALSO ON WEDNESDAY 18 NOVEMBER &mdash; 26 MORE STORIES</div>
+      <div class="morecols">
+        <div class="mcol">
+          <div class="mline"><b>10</b>US unveils settler sanctions</div>
+          <div class="mline"><b>11</b>Aid groups warn on Gaza</div>
+          <div class="mline"><b>12</b>New strike hits Crimea</div>
+          <div class="mline"><b>13</b>Voyager 1 sends signal</div>
+          <div class="mline"><b>14</b>Anthropic prices IPO</div>
+          <div class="mline"><b>15</b>US loses measles status</div>
+          <div class="mline"><b>16</b>Cyberattack hits firms</div>
+          <div class="mline"><b>17</b>Guinea votes on reforms</div>
+          <div class="mline"><b>18</b>Journalist killed in CR</div>
+          <div class="mline"><b>19</b>Fishermen protest quotas</div>
+          <div class="mline"><b>20</b>Telegram faces probe</div>
+          <div class="mline"><b>21</b>China-Canada trade deal</div>
+          <div class="mline"><b>22</b>Japan scrambles jets</div>
+        </div>
+        <div class="mcol">
+          <div class="mline"><b>23</b>NSA network breach</div>
+          <div class="mline"><b>24</b>Apple services outage</div>
+          <div class="mline"><b>25</b>Amazon hub plan</div>
+          <div class="mline"><b>26</b>Senegal election row</div>
+          <div class="mline"><b>27</b>Nations League result</div>
+          <div class="mline"><b>28</b>SAFF final reaches extra time</div>
+          <div class="mline"><b>29</b>COP31 finance talks</div>
+          <div class="mline"><b>30</b>Sudan truce talks stall</div>
+          <div class="mline"><b>31</b>Tanker attacked at sea</div>
+          <div class="mline"><b>32</b>Spy plot case widens</div>
+          <div class="mline"><b>33</b>Ukraine casualty report</div>
+          <div class="mline"><b>34</b>Earthquake shakes Pacific</div>
+          <div class="mline"><b>35</b>Markets end mixed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="abs foot">
+    <div class="f1">Every story happened or was first reported on 18 November 2026.</div>
+    <div class="f2">Sources: Reuters, AP, Al Jazeera, BBC, CNN, FT, IMD, NASA, UNA, UNFPA, ESPNcricinfo &nbsp;&bull;&nbsp; Original drawings / ASCII map</div>
+  </div>
+
+</div>
+</body>
+</html>
